@@ -2,6 +2,7 @@ package ru.netology.domain.afisha;
 
 public class MovieManager {
     private MovieData[] movies = new MovieData[0];
+
     private int countMovies = 10;
 
     public MovieManager() {
@@ -17,6 +18,16 @@ public class MovieManager {
 
     public void setMovies(MovieData[] movies) {
         this.movies = movies;
+    }
+
+    private MovieData[] moviesReverse = new MovieData[0];
+
+    public MovieData[] getMoviesReverse() {
+        return moviesReverse;
+    }
+
+    public void setMoviesReverse(MovieData[] moviesReverse) {
+        this.moviesReverse = moviesReverse;
     }
 
     public int getCountMovies() {
@@ -41,15 +52,17 @@ public class MovieManager {
     }
 
     public void findLast() {
+        int resultLength;
         if (countMovies > movies.length) {
-            int result = movies.length;
+            resultLength = movies.length;
+        } else {
+            resultLength = countMovies;
         }
 
-        MovieData[] tmp = new MovieData[countMovies];
-        for (int i = 0, j = movies.length - 1; i < countMovies; i++, j--) {
+        MovieData[] tmp = new MovieData[resultLength];
+        for (int i = 0, j = movies.length - 1; i < resultLength; i++, j--) {
             tmp[i] = movies[j];
         }
-        movies = tmp;
+        moviesReverse = tmp;
     }
 }
-
